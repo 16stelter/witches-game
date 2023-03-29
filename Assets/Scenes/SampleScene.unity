@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomObject: {fileID: 182718959139303277, guid: 3f29cfad137688b4d8c09254e9ecb6c6, type: 3}
+  wallObject: {fileID: 7633808404003100938, guid: a1367d6fa039b574c914badc33e1f972, type: 3}
 --- !u!1001 &889201045
 PrefabInstance:
   m_ObjectHideFlags: 0

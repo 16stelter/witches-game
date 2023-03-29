@@ -11,6 +11,7 @@ public class MapGeneration : MonoBehaviour
     int max_rooms = 20;
 
     public GameObject roomObject;
+    public GameObject wallObject;
 
     List<Vector2Int> untested;
     List<Vector2Int> rooms;
@@ -27,6 +28,7 @@ public class MapGeneration : MonoBehaviour
             CreateRoomNeighbours(untested[0][0], untested[0][1]);
             untested.RemoveAt(0);
         }
+        Debug.Log(rooms);
         SpawnRooms();
         Debug.Log(rooms.Count);
     }
@@ -35,33 +37,56 @@ public class MapGeneration : MonoBehaviour
     {
         foreach (int i in Enumerable.Range(0, 4))
         {
-            if (rooms.Count() < max_rooms && rnd.Next(4) > 2)
-            { //todo: check if room already exists
-                if(i == 0 && !rooms.Contains(new Vector2Int(x+20, y))) 
+            if (rooms.Count() < max_rooms)
+            { 
+                if(i == 0  && !rooms.Contains(new Vector2Int(x+20, y)))
                 {
-                    untested.Add(new Vector2Int(x+21, y));
-                    rooms.Add(new Vector2Int(x+21, y));
+                    if(rnd.Next(4) > 2) 
+                    {
+                        untested.Add(new Vector2Int(x+20, y));
+                        rooms.Add(new Vector2Int(x+20, y));
+                    }
+                    else
+                    {
+                        Instantiate(wallObject, new Vector3(x+10, y, 0), new Quaternion());
+                    }
                 }
-                else if(i == 1 && !rooms.Contains(new Vector2Int(x, y+10)))
+                else if(i == 1 && !rooms.Contains(new Vector2Int(x, y+9)))
                 {
-                    untested.Add(new Vector2Int(x, y+10));
-                    rooms.Add(new Vector2Int(x, y+10));
-
+                    if(rnd.Next(4) > 2)
+                    {
+                        untested.Add(new Vector2Int(x, y+9));
+                        rooms.Add(new Vector2Int(x, y+9));
+                    }
+                    else
+                    {
+                        Instantiate(wallObject, new Vector3(x, y+4, 0), new Quaternion(0.7076f, 0.7076f, 0.0f, 0.0f));
+                    }
                 }
-                else if(i == 2 && !rooms.Contains(new Vector2Int(x-20, y))) {
-                    untested.Add(new Vector2Int(x-21, y));
-                    rooms.Add(new Vector2Int(x-21, y));
-
-                }
-                else if(i == 3 && !rooms.Contains(new Vector2Int(x, y-10)))
+                else if(i == 2 && !rooms.Contains(new Vector2Int(x-20, y))) 
                 {
-                    untested.Add(new Vector2Int(x, y-10));
-                    rooms.Add(new Vector2Int(x, y-10));
+                    if(rnd.Next(4) > 2)
+                    {
+                        untested.Add(new Vector2Int(x-20, y));
+                        rooms.Add(new Vector2Int(x-20, y));
+                    }
+                    else
+                    {
+                        Instantiate(wallObject, new Vector3(x-10, y, 0), new Quaternion());
+                    }
                 }
-            }
-            if (rooms.Count() < min_rooms && untested.Count == 1 && i == 3)
-            {
-                untested.Add(new Vector2Int(x, y));
+                else if(i == 3 && !rooms.Contains(new Vector2Int(x, y-9)))
+                {
+                    if(rnd.Next(4) > 2 || rooms.Count < min_rooms)
+                    {
+                        untested.Add(new Vector2Int(x, y-9));
+                        rooms.Add(new Vector2Int(x, y-9));
+                    }
+                    else
+                    {
+                        Instantiate(wallObject, new Vector3(x, y-5, 0), new Quaternion(0.7076f, 0.7076f, 0.0f, 0.0f));
+                    }
+                }
             }
         }
     }
