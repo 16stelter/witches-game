@@ -88,6 +88,25 @@ public class MapGeneration : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                if(!rooms.Contains(new Vector2Int(x+20, y)))
+                {
+                    Instantiate(wallObject, new Vector3(x+10, y, 0), new Quaternion());
+                }
+                if(!rooms.Contains(new Vector2Int(x-20, y)))
+                {
+                    Instantiate(wallObject, new Vector3(x-10, y, 0), new Quaternion());
+                }
+                if(!rooms.Contains(new Vector2Int(x, y+9)))
+                {
+                    Instantiate(wallObject, new Vector3(x, y+4, 0), new Quaternion(0.7076f, 0.7076f, 0.0f, 0.0f));
+                }
+                if(!rooms.Contains(new Vector2Int(x, y-9)))
+                {
+                    Instantiate(wallObject, new Vector3(x, y-5, 0), new Quaternion(0.7076f, 0.7076f, 0.0f, 0.0f));
+                }
+            }
         }
     }
 

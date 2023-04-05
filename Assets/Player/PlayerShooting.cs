@@ -61,6 +61,7 @@ public class PlayerShooting : MonoBehaviour
             instance.GetComponent<BulletBehaviour>().speed = speed;
             instance.GetComponent<BulletBehaviour>().direction = new Vector2(x_dir, y_dir);
             instance.GetComponent<BulletBehaviour>().range = range;
+            instance.GetComponent<BulletBehaviour>().isPlayerShooting = true;
             canShoot = false;
             x_dir = y_dir = 0;
             StartCoroutine(ShootDelay());

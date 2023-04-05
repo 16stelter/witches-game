@@ -7,6 +7,7 @@ public class BulletBehaviour : MonoBehaviour
     public Vector2 direction;
     public float speed;
     public float range;
+    public bool isPlayerShooting;
 
     public Rigidbody2D rb;
     public GameObject go;
@@ -25,6 +26,14 @@ public class BulletBehaviour : MonoBehaviour
         rb.velocity = new Vector2(direction.x * speed, direction.y * speed);
         distanceTravelled += 1.0f;
         if(distanceTravelled > range)
+        {
+            Destroy(go);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if((other.CompareTag("Enemy") && isPlayerShooting) || (other.CompareTag("Player") && !isPlayerShooting))
         {
             Destroy(go);
         }
