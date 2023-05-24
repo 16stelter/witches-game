@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 87e144bc6f1922d4295b79eb578eef02
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - roomCollider: {instanceID: 0}
+  - doorsObject: {fileID: 182718959139303277, guid: de588a7ebf274cb4ab275b11fec0a88a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

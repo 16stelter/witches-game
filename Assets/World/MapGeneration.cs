@@ -112,11 +112,22 @@ public class MapGeneration : MonoBehaviour
 
     void SpawnRooms()
     {
+        bool first = true;
         foreach (Vector2Int r in rooms)
         {
             Vector3 pos = new Vector3(r[0], r[1], 0);
             Quaternion rot = new Quaternion();
-            Instantiate(roomObject, pos, rot);
+            GameObject instance = Instantiate(roomObject, pos, rot);
+            if(first)
+            {
+                instance.GetComponent<RoomLogic>().isCleared = true;
+                first = false;
+            }
+            else
+            {
+                instance.GetComponent<RoomLogic>().isCleared = false;
+            }
+
         }
     }
 
